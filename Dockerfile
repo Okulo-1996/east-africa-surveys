@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-# Enable Apache mod_rewrite
+# Enable Apache mod_rewrite (optional, but good to have)
 RUN a2enmod rewrite
 
 # Install PostgreSQL extensions for PHP
@@ -11,9 +11,8 @@ RUN apt-get update && \
 # Copy all application files to the container
 COPY . /var/www/html/
 
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage
+# Set proper permissions (simplified - no storage folder needed)
+RUN chown -R www-data:www-data /var/www/html
 
 # Expose port 80
 EXPOSE 80
