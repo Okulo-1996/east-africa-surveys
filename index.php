@@ -23,17 +23,16 @@ $voted_today = isset($_COOKIE['voted_' . $today]);
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <!-- Using text-based logo to avoid image hosting costs -->
-            <h1>🌍 East Africa Surveys</h1>
-            <p>Your Voice Matters - Daily Polls from Kenya, Uganda & Tanzania</p>
-            <div class="email-contact">
-                <i class="fas fa-envelope"></i>
-                info.eastafricasurveys@gmail.com
-            </div>
+<header>
+    <div class="container header-content">
+        <h1>East Africa <span>Surveys</span></h1>
+        <p>Your Voice Matters — Daily Polls from Kenya, Uganda & Tanzania</p>
+        <div class="email-badge">
+            <i class="fas fa-envelope"></i>
+            info.eastafricasurveys@gmail.com
         </div>
-    </header>
+    </div>
+</header>
 
     <div class="container">
         <nav>
