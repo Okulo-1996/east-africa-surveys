@@ -1,4 +1,8 @@
 <?php
+// Check if user is logged in
+$logged_in = isset($_SESSION['user_id']);
+$username = $logged_in ? $_SESSION['username'] : '';
+
 require_once 'config.php';
 require_once 'db_connect.php';
 require_once 'functions.php';
@@ -128,12 +132,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="container">
         <nav>
-            <a href="index.php"><i class="fas fa-home"></i> Home</a>
-            <a href="results.php"><i class="fas fa-chart-bar"></i> Results</a>
-            <a href="about.php"><i class="fas fa-info-circle"></i> About</a>
-            <a href="contact.php"><i class="fas fa-envelope"></i> Contact</a>
-            <a href="login.php" class="active"><i class="fas fa-user"></i> Login</a>
-        </nav>
+    <a href="index.php">🏠 Home</a>
+    <a href="results.php">📊 Results</a>
+    <a href="about.php">📖 About</a>
+    <a href="contact.php">📞 Contact</a>
+    
+    <?php if ($logged_in): ?>
+        <a href="dashboard.php"><i class="fas fa-user"></i> <?php echo htmlspecialchars($username); ?></a>
+        <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <?php else: ?>
+        <a href="login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.php"><i class="fas fa-user-plus"></i> Register</a>
+    <?php endif; ?>
+</nav>
 
         <div class="auth-container">
             <div class="auth-header">
