@@ -128,6 +128,7 @@ $voted_today = isset($_COOKIE['voted_' . $today]);
                 <p><a href="about.php" style="color: white; text-decoration: none;">📖 About Us</a></p>
                 <p><a href="privacy.php" style="color: white; text-decoration: none;">🔒 Privacy Policy</a></p>
                 <p><a href="contact.php" style="color: white; text-decoration: none;">📞 Contact</a></p>
+                <p><a href="terms.php"><i class="fas fa-chevron-right"></i> Terms of Service</a></p>
             </div>
             <div class="footer-section">
                 <h3>Follow Us</h3>
