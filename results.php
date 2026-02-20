@@ -1,4 +1,8 @@
 <?php
+// Check if user is logged in
+$logged_in = isset($_SESSION['user_id']);
+$username = $logged_in ? $_SESSION['username'] : '';
+
 // Enable error reporting for debugging (remove in production)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -83,12 +87,19 @@ try {
     <!-- Navigation -->
     <div class="container">
         <nav>
-            <a href="index.php"><i class="fas fa-home"></i> Home</a>
-            <a href="results.php" class="active"><i class="fas fa-chart-bar"></i> Results</a>
-            <a href="about.php"><i class="fas fa-info-circle"></i> About Us</a>
-            <a href="contact.php"><i class="fas fa-envelope"></i> Contact</a>
-            <a href="terms.php"><i class="fas fa-file-contract"></i> Terms</a>
-        </nav>
+    <a href="index.php">🏠 Home</a>
+    <a href="results.php">📊 Results</a>
+    <a href="about.php">📖 About</a>
+    <a href="contact.php">📞 Contact</a>
+    
+    <?php if ($logged_in): ?>
+        <a href="dashboard.php"><i class="fas fa-user"></i> <?php echo htmlspecialchars($username); ?></a>
+        <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <?php else: ?>
+        <a href="login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.php"><i class="fas fa-user-plus"></i> Register</a>
+    <?php endif; ?>
+</nav>
 
         <main>
             <!-- Success Message (if just voted) -->
