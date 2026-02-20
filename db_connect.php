@@ -8,7 +8,7 @@ $supabase_host = 'db.hdeexaxpqlzzfouyqdut.supabase.co';
 $supabase_port = '5432';
 $supabase_db = 'postgres';
 $supabase_user = 'postgres';
-$supabase_password = 'YOUR-ACTUAL-PASSWORD-HERE'; // CHANGE THIS!
+$supabase_password = 'Okulo@1996$28'; // CHANGE THIS!
 
 try {
     // Create DSN string
