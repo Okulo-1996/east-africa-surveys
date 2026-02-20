@@ -8,7 +8,7 @@ $supabase_host = 'aws-1-eu-west-1.pooler.supabase.com';
 $supabase_port = '5432';
 $supabase_db = 'postgres';
 $supabase_user = 'postgres.hdeexaxpqlzzfouyqdut';
-$supabase_password = 'YOUR-ACTUAL-SUPABASE-PASSWORD-HERE'; // Put your real password here
+$supabase_password = 'Okulo@1996$28; // Put your real password here
 
 echo "<h1>🔍 Database Connection Test</h1>";
 
