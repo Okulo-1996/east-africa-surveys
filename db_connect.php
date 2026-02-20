@@ -8,7 +8,7 @@ $supabase_host = 'aws-1-eu-west-1.pooler.supabase.com';
 $supabase_port = '5432';
 $supabase_db = 'postgres';
 $supabase_user = 'postgres.hdeexaxpqlzzfouyqdut';
-$supabase_password = 'DtcvA7hdk4sbNGGz0ZhwyXb9aVaFMO49';
+$supabase_password = 'Okulo@1996$28';
 
 try {
     // Create DSN string
