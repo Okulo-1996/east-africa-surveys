@@ -87,6 +87,7 @@ try {
             <a href="results.php" class="active"><i class="fas fa-chart-bar"></i> Results</a>
             <a href="about.php"><i class="fas fa-info-circle"></i> About Us</a>
             <a href="contact.php"><i class="fas fa-envelope"></i> Contact</a>
+            <a href="terms.php"><i class="fas fa-file-contract"></i> Terms</a>
         </nav>
 
         <main>
