@@ -1,3 +1,8 @@
+<?php
+// Check if user is logged in
+$logged_in = isset($_SESSION['user_id']);
+$username = $logged_in ? $_SESSION['username'] : '';
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +26,19 @@
 
     <div class="container">
         <nav>
-            <a href="index.php">🏠 Home</a>
-            <a href="results.php">📊 Results</a>
-            <a href="about.php">📖 About Us</a>
-            <a href="contact.php">📞 Contact</a>
-            <a href="terms.php"><i class="fas fa-file-contract"></i> Terms</a>
-        </nav>
+    <a href="index.php">🏠 Home</a>
+    <a href="results.php">📊 Results</a>
+    <a href="about.php">📖 About</a>
+    <a href="contact.php">📞 Contact</a>
+    
+    <?php if ($logged_in): ?>
+        <a href="dashboard.php"><i class="fas fa-user"></i> <?php echo htmlspecialchars($username); ?></a>
+        <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <?php else: ?>
+        <a href="login.php"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="register.php"><i class="fas fa-user-plus"></i> Register</a>
+    <?php endif; ?>
+</nav>
 
         <main>
             <div class="about-section">
