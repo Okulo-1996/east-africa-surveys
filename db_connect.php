@@ -1,14 +1,14 @@
 <?php
-// db_connection.php - Supabase with Connection Pooler
+// db_connect.php - Supabase with Connection Pooler
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Supabase connection pooler details - from your connection string
+// Supabase connection pooler details
 $supabase_host = 'aws-1-eu-west-1.pooler.supabase.com';
-$supabase_port = '5432';  // Using 5432 as specified in your string
+$supabase_port = '5432';
 $supabase_db = 'postgres';
-$supabase_user = 'postgres.hdeexaxpqlzzfouyqdut';  // Your username with project ref
-$supabase_password = 'Okulo@1996$28;  // CHANGE THIS TO YOUR ACTUAL PASSWORD!
+$supabase_user = 'postgres.hdeexaxpqlzzfouyqdut';
+$supabase_password = 'DtcvA7hdk4sbNGGz0ZhwyXb9aVaFMO49';
 
 try {
     // Create DSN string
@@ -26,17 +26,12 @@ try {
     $pdo->query("SELECT 1");
     
 } catch(PDOException $e) {
-    // Log error for debugging
-    error_log("Supabase connection failed: " . $e->getMessage());
-    
     // Show user-friendly error
     die("
         <div style='text-align: center; padding: 50px; font-family: Arial; max-width: 600px; margin: 0 auto;'>
             <h1 style='color: #F39C12;'>🌍 East Africa Surveys</h1>
-            <p>We're having trouble connecting to our database. Our team has been notified.</p>
-            <p style='color: #666;'>Please try again in a few minutes.</p>
-            <p style='margin-top: 30px;'>🇰🇪 Kenya | 🇺🇬 Uganda | 🇹🇿 Tanzania</p>
-            <p style='font-size: 0.8em; color: #999; margin-top: 20px;'>Error reference: " . substr(md5($e->getMessage()), 0, 8) . "</p>
+            <p>We're having trouble connecting to our database. Please try again later.</p>
+            <p style='color: #666;'>🇰🇪 Kenya | 🇺🇬 Uganda | 🇹🇿 Tanzania</p>
         </div>
     ");
 }
