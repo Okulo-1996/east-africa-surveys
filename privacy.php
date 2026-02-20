@@ -25,6 +25,7 @@
             <a href="results.php">📊 Results</a>
             <a href="about.php">📖 About Us</a>
             <a href="contact.php">📞 Contact</a>
+            <a href="terms.php"><i class="fas fa-file-contract"></i> Terms</a>
         </nav>
 
         <main>
