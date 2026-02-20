@@ -325,6 +325,7 @@ try {
                     <p><a href="results.php"><i class="fas fa-chevron-right"></i> View Results</a></p>
                     <p><a href="about.php"><i class="fas fa-chevron-right"></i> About Us</a></p>
                     <p><a href="privacy.php"><i class="fas fa-chevron-right"></i> Privacy Policy</a></p>
+                    <p><a href="terms.php"><i class="fas fa-chevron-right"></i> Terms of Service</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Our Region</h3>
