@@ -113,6 +113,7 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <p><a href="privacy.php" style="color: white;">🔒 Privacy</a></p>
+                <p><a href="terms.php"><i class="fas fa-chevron-right"></i> Terms of Service</a></p>
             </div>
         </div>
         <div class="footer-bottom">
