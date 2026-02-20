@@ -1,12 +1,20 @@
-/* East Africa Surveys - Main Stylesheet */
+/* ===== East Africa Surveys - Professional Design ===== */
 :root {
-    --sunset-orange: #F39C12;
-    --savanna-green: #27AE60;
-    --earth-brown: #8B5A2B;
-    --cloud-white: #F8F9FA;
-    --night-sky: #2C3E50;
+    /* Professional Color Palette */
+    --primary: #2C3E50;        /* Deep navy - professional & trustworthy */
+    --secondary: #E67E22;       /* Burnt orange - East African sunset */
+    --accent: #27AE60;          /* Emerald green - East African landscape */
+    --light: #ECF0F1;           /* Light gray - clean background */
+    --dark: #2C3E50;            /* Dark navy for text */
+    --white: #FFFFFF;
+    --shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'Poppins', var(--font-primary);
 }
 
+/* ===== Reset & Base Styles ===== */
 * {
     margin: 0;
     padding: 0;
@@ -14,273 +22,460 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--cloud-white);
-    color: var(--night-sky);
+    font-family: var(--font-primary);
+    background: #F5F7FA;
+    color: var(--dark);
     line-height: 1.6;
 }
 
+/* ===== Professional Container ===== */
 .container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 30px;
 }
 
-/* Header Styles */
+/* ===== Premium Header ===== */
 header {
-    background: linear-gradient(135deg, var(--sunset-orange), var(--savanna-green));
-    color: white;
-    padding: 30px 0;
-    text-align: center;
-    border-radius: 0 0 50px 50px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+    background: linear-gradient(135deg, var(--primary) 0%, #34495E 100%);
+    color: var(--white);
+    padding: 60px 0 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: "🇰🇪 🇺🇬 🇹🇿";
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+    font-size: 40px;
+    opacity: 0.1;
+    white-space: nowrap;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
 }
 
 header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    font-family: var(--font-heading);
+    font-size: 3.2em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+header h1 span {
+    color: var(--secondary);
 }
 
 header p {
-    font-size: 1.2em;
+    font-size: 1.3em;
     opacity: 0.95;
+    max-width: 600px;
+    font-weight: 300;
 }
 
-header img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 15px;
-    filter: brightness(0) invert(1); /* Makes logo white */
-}
-
-/* Navigation */
+/* ===== Professional Navigation ===== */
 nav {
-    background: white;
-    padding: 15px;
+    background: var(--white);
+    padding: 0 20px;
     border-radius: 50px;
-    margin: 20px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    text-align: center;
+    margin: -25px auto 40px;
+    max-width: 600px;
+    box-shadow: 0 10px 30px var(--shadow);
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
 }
 
 nav a {
-    color: var(--night-sky);
+    color: var(--dark);
     text-decoration: none;
-    padding: 10px 20px;
-    margin: 0 5px;
-    border-radius: 25px;
-    transition: all 0.3s;
+    padding: 15px 25px;
     font-weight: 500;
+    transition: all 0.3s;
+    position: relative;
 }
 
-nav a:hover {
-    background: var(--sunset-orange);
-    color: white;
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: var(--secondary);
+    transition: width 0.3s;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 30px;
 }
 
 nav a.active {
-    background: var(--savanna-green);
-    color: white;
+    color: var(--secondary);
 }
 
-/* Survey Cards */
+/* ===== Survey Cards - Professional Style ===== */
 .survey-card {
-    background: white;
+    background: var(--white);
     border-radius: 20px;
-    padding: 25px;
+    padding: 30px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border-left: 5px solid var(--sunset-orange);
+    box-shadow: 0 5px 20px var(--shadow);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.survey-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px var(--shadow);
 }
 
 .question-number {
     display: inline-block;
-    background: var(--savanna-green);
-    color: white;
-    padding: 5px 15px;
-    border-radius: 25px;
+    background: var(--accent);
+    color: var(--white);
+    padding: 5px 18px;
+    border-radius: 30px;
     font-size: 0.9em;
-    margin-bottom: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
 }
 
 .question-text {
-    font-size: 1.3em;
-    margin-bottom: 20px;
-    color: var(--night-sky);
+    font-size: 1.4em;
+    font-weight: 500;
+    margin-bottom: 25px;
+    color: var(--primary);
+    line-height: 1.4;
 }
 
-/* Radio Options */
+/* ===== Professional Radio Options ===== */
 .option-group {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
 .option-group label {
+    flex: 1;
+    min-width: 120px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    gap: 10px;
     cursor: pointer;
-    padding: 10px 20px;
-    background: #f0f0f0;
-    border-radius: 30px;
+    padding: 15px 20px;
+    background: #F8F9FA;
+    border: 2px solid #E9ECEF;
+    border-radius: 12px;
     transition: all 0.3s;
+    font-weight: 500;
 }
 
 .option-group label:hover {
-    background: #e0e0e0;
+    background: #E9ECEF;
+    border-color: var(--secondary);
 }
 
 .option-group input[type="radio"] {
-    accent-color: var(--savanna-green);
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--secondary);
 }
 
-/* Buttons */
+/* Selected state */
+.option-group input[type="radio"]:checked + span {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+/* ===== Professional Buttons ===== */
 .btn {
     display: inline-block;
-    padding: 15px 40px;
-    background: linear-gradient(135deg, var(--sunset-orange), var(--savanna-green));
-    color: white;
+    padding: 16px 45px;
+    background: linear-gradient(135deg, var(--secondary), #F39C12);
+    color: var(--white);
     text-decoration: none;
     border-radius: 50px;
     border: none;
-    font-size: 1.2em;
-    font-weight: bold;
+    font-size: 1.1em;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+    transition: all 0.3s;
+    box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
+    letter-spacing: 0.5px;
 }
 
 .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+    box-shadow: 0 15px 25px rgba(230, 126, 34, 0.4);
 }
 
-.btn-small {
-    padding: 10px 25px;
-    font-size: 1em;
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+    box-shadow: none;
 }
 
-/* Results Page */
-.chart-container {
-    background: white;
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+.btn-outline:hover {
+    background: var(--secondary);
+    color: var(--white);
 }
 
-.chart-title {
-    color: var(--savanna-green);
-    margin-bottom: 20px;
-    font-size: 1.4em;
-    border-bottom: 2px solid var(--sunset-orange);
-    padding-bottom: 10px;
+/* ===== Stats Cards ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 60px 0;
 }
 
 .stat-card {
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 30px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 20px var(--shadow);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .stat-number {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: var(--sunset-orange);
+    font-size: 3em;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 10px;
+    line-height: 1;
 }
 
-/* About Page */
-.about-section {
-    background: white;
+.stat-label {
+    color: var(--primary);
+    font-size: 1.1em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===== Results Page - Professional Charts ===== */
+.chart-container {
+    background: var(--white);
     border-radius: 20px;
-    padding: 40px;
-    margin: 30px 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px var(--shadow);
 }
 
-.country-flags {
+.chart-title {
+    color: var(--primary);
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #E9ECEF;
+}
+
+/* Progress Bar Style */
+.progress-bar {
+    background: #E9ECEF;
+    height: 40px;
+    border-radius: 10px;
+    margin: 10px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
+    color: white;
+    font-weight: 600;
+    transition: width 0.5s;
+}
+
+.progress-yes { background: var(--accent); }
+.progress-no { background: #E74C3C; }
+.progress-maybe { background: var(--secondary); }
+
+/* ===== About Page - Professional ===== */
+.about-section {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 50px;
+    margin: 40px 0;
+    box-shadow: 0 5px 20px var(--shadow);
+}
+
+.about-section h2 {
+    color: var(--primary);
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.about-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--secondary);
+    border-radius: 2px;
+}
+
+.country-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin: 50px 0;
+}
+
+.country-card {
+    text-align: center;
+    padding: 30px;
+    background: #F8F9FA;
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.country-card:hover {
+    transform: translateY(-5px);
+}
+
+.country-flag {
+    font-size: 4em;
+    margin-bottom: 15px;
+}
+
+.country-name {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+/* ===== Contact Form - Professional ===== */
+.contact-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
     gap: 40px;
     margin: 40px 0;
 }
 
-.country-flag {
-    text-align: center;
-}
-
-.country-flag span {
-    font-size: 4em;
-}
-
-/* Contact Form */
-.contact-form {
-    background: white;
-    border-radius: 20px;
+.contact-info {
+    background: var(--primary);
+    color: var(--white);
     padding: 40px;
-    margin: 30px 0;
+    border-radius: 20px;
+}
+
+.contact-info h3 {
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+.contact-detail i {
+    font-size: 1.5em;
+    color: var(--secondary);
+}
+
+.contact-form {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px var(--shadow);
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--savanna-green);
+    font-weight: 600;
+    color: var(--primary);
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
+    padding: 15px;
+    border: 2px solid #E9ECEF;
     border-radius: 10px;
     font-size: 1em;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
+    font-family: var(--font-primary);
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--sunset-orange);
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
 }
 
-/* Footer */
+/* ===== Professional Footer ===== */
 footer {
-    background: var(--night-sky);
-    color: white;
-    padding: 40px 0 20px;
-    margin-top: 60px;
-    border-radius: 50px 50px 0 0;
+    background: var(--primary);
+    color: var(--white);
+    padding: 60px 0 30px;
+    margin-top: 80px;
 }
 
-.footer-content {
+.footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    margin-bottom: 40px;
 }
 
 .footer-section h3 {
-    color: var(--sunset-orange);
-    margin-bottom: 15px;
+    color: var(--secondary);
+    margin-bottom: 20px;
+    font-size: 1.3em;
 }
 
 .footer-section p {
     margin-bottom: 10px;
-    opacity: 0.9;
+    opacity: 0.8;
+    line-height: 1.8;
+}
+
+.footer-section a {
+    color: var(--white);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-section a:hover {
+    opacity: 1;
+    color: var(--secondary);
 }
 
 .footer-bottom {
@@ -288,42 +483,95 @@ footer {
     padding-top: 30px;
     margin-top: 30px;
     border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9em;
+    opacity: 0.7;
 }
 
-/* Email contact style */
-.email-contact {
-    background: rgba(255,255,255,0.1);
-    padding: 10px 20px;
-    border-radius: 30px;
+/* ===== Email Contact Badge ===== */
+.email-badge {
+    background: rgba(255,255,255,0.15);
+    padding: 12px 25px;
+    border-radius: 50px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin: 10px 0;
+    margin-top: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
 }
 
-.email-contact img {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) invert(1);
+.email-badge i {
+    color: var(--secondary);
 }
 
-/* Responsive Design */
+/* ===== Responsive Design ===== */
 @media (max-width: 768px) {
     header h1 {
-        font-size: 2em;
+        font-size: 2.2em;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+        border-radius: 20px;
+        padding: 10px;
     }
     
     nav a {
-        display: inline-block;
-        margin: 5px;
+        padding: 10px 15px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .country-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
     
     .option-group {
         flex-direction: column;
-        gap: 10px;
     }
     
     .option-group label {
         width: 100%;
     }
-  }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.survey-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.survey-card:nth-child(1) { animation-delay: 0.1s; }
+.survey-card:nth-child(2) { animation-delay: 0.2s; }
+.survey-card:nth-child(3) { animation-delay: 0.3s; }
+.survey-card:nth-child(4) { animation-delay: 0.4s; }
+.survey-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* ===== Utility Classes ===== */
+.text-center { text-align: center; }
+.mt-4 { margin-top: 40px; }
+.mb-4 { margin-bottom: 40px; }
+.p-4 { padding: 40px; }
