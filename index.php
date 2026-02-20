@@ -57,7 +57,7 @@ $voted_today = isset($_COOKIE['voted_' . $today]);
                     <a href="results.php" class="btn btn-small" style="margin-top: 15px;">View Today's Results</a>
                 </div>
             <?php elseif (count($questions) > 0): ?>
-                <form method="POST" action="submit_survey.php" id="surveyForm">
+                <form method="POST" action="submit.php" id="surveyForm">
                     <?php foreach ($questions as $index => $question): ?>
                         <div class="survey-card">
                             <span class="question-number">Question <?php echo $index + 1; ?> of 5</span>
