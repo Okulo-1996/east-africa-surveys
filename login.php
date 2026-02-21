@@ -1,61 +1,99 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+session_start();
 require_once 'config.php';
 require_once 'db_connect.php';
 require_once 'functions.php';
 
 // Redirect if already logged in
-if (isLoggedIn()) {
+if (isset($_SESSION['user_id'])) {
     header('Location: dashboard.php');
     exit();
 }
 
 $error = '';
 $success = '';
+$debug_info = '';
 
+// Check if this is a POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
-    $password = $_POST['password'];
+    $debug_info .= "✅ POST request detected<br>";
+    
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
     $remember = isset($_POST['remember']);
+    
+    $debug_info .= "Username entered: " . htmlspecialchars($username) . "<br>";
+    $debug_info .= "Password entered: " . (empty($password) ? 'EMPTY' : 'PROVIDED') . "<br>";
     
     if (empty($username) || empty($password)) {
         $error = "Please enter username and password";
+        $debug_info .= "❌ Validation failed: Empty fields<br>";
     } else {
-        // Get user from database
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
-        $stmt->execute([$username, $username]);
-        $user = $stmt->fetch();
-        
-        if ($user && password_verify($password, $user['password_hash'])) {
-            if ($user['is_verified']) {
-                // Login successful
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
+        try {
+            $debug_info .= "✅ Attempting database query...<br>";
+            
+            // Get user from database
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
+            $stmt->execute([$username, $username]);
+            $user = $stmt->fetch();
+            
+            if ($user) {
+                $debug_info .= "✅ User found in database: " . htmlspecialchars($user['username']) . "<br>";
+                $debug_info .= "Stored hash: " . substr($user['password_hash'], 0, 10) . "...<br>";
                 
-                // Log login time
-                logUserLogin($pdo, $user['id']);
-                
-                // Set remember me cookie if requested
-                if ($remember) {
-                    $token = generateToken();
-                    $expires = date('Y-m-d H:i:s', strtotime('+30 days'));
+                if (password_verify($password, $user['password_hash'])) {
+                    $debug_info .= "✅ Password verified successfully<br>";
                     
-                    // Store token in database
-                    $stmt = $pdo->prepare("INSERT INTO user_sessions (user_id, session_token, expires_at) VALUES (?, ?, ?)");
-                    $stmt->execute([$user['id'], $token, $expires]);
-                    
-                    // Set cookie
-                    setcookie('remember_token', $token, time() + (86400 * 30), '/', '', true, true);
+                    if ($user['is_verified']) {
+                        $debug_info .= "✅ User is verified<br>";
+                        
+                        // Login successful
+                        $_SESSION['user_id'] = $user['id'];
+                        $_SESSION['username'] = $user['username'];
+                        
+                        // Log login time
+                        logUserLogin($pdo, $user['id']);
+                        
+                        $debug_info .= "✅ Session set, redirecting to dashboard...<br>";
+                        
+                        // IMPORTANT: This header must execute
+                        header('Location: dashboard.php');
+                        exit();
+                        
+                    } else {
+                        $error = "Please verify your email before logging in.";
+                        $debug_info .= "❌ User not verified<br>";
+                    }
+                } else {
+                    $error = "Invalid password";
+                    $debug_info .= "❌ Password verification failed<br>";
                 }
-                
-                header('Location: dashboard.php');
-                exit();
             } else {
-                $error = "Please verify your email before logging in. <a href='resend-verification.php?email=" . urlencode($user['email']) . "'>Resend verification email</a>";
+                $error = "User not found";
+                $debug_info .= "❌ No user found with that username/email<br>";
             }
-        } else {
-            $error = "Invalid username or password";
+        } catch (PDOException $e) {
+            error_log("Login error: " . $e->getMessage());
+            $error = "Database error. Please try again.";
+            $debug_info .= "❌ Database error: " . $e->getMessage() . "<br>";
         }
     }
+}
+
+// Check for URL parameters
+if (isset($_GET['registered'])) {
+    $success = "Registration successful! Please check your email to verify your account.";
+}
+
+if (isset($_GET['verified'])) {
+    $success = "Email verified successfully! You can now login.";
+}
+
+if (isset($_GET['logged_out'])) {
+    $success = "You have been logged out successfully.";
 }
 ?>
 <!DOCTYPE html>
@@ -75,12 +113,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
-        
         .remember-forgot {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: 20px 0;
+        }
+        .debug-box {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow: auto;
         }
     </style>
 </head>
@@ -98,7 +146,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="results.php"><i class="fas fa-chart-bar"></i> Results</a>
             <a href="about.php"><i class="fas fa-info-circle"></i> About</a>
             <a href="contact.php"><i class="fas fa-envelope"></i> Contact</a>
-            <a href="login.php" class="active"><i class="fas fa-user"></i> Login</a>
+            <a href="login.php" class="active"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="register.php"><i class="fas fa-user-plus"></i> Register</a>
         </nav>
 
         <div class="auth-container">
@@ -114,15 +163,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
             
-            <?php if (isset($_GET['registered'])): ?>
+            <?php if ($success): ?>
                 <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
-                    <i class="fas fa-check-circle"></i> Registration successful! Please check your email to verify your account.
+                    <i class="fas fa-check-circle"></i> <?php echo $success; ?>
                 </div>
             <?php endif; ?>
             
-            <?php if (isset($_GET['verified'])): ?>
-                <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
-                    <i class="fas fa-check-circle"></i> Email verified successfully! You can now login.
+            <!-- DEBUG INFO - Remove after fixing -->
+            <?php if (!empty($debug_info)): ?>
+                <div class="debug-box">
+                    <strong>🔍 Debug Info:</strong><br>
+                    <?php echo $debug_info; ?>
                 </div>
             <?php endif; ?>
             
@@ -149,11 +200,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </button>
             </form>
             
-            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0;">
+            <div style="text-align: center; margin-top: 30px;">
                 <p>Don't have an account? <a href="register.php" style="color: var(--secondary); font-weight: 600;">Register here</a></p>
-                <p style="margin-top: 15px; font-size: 0.9em; color: #666;">
-                    By logging in, you agree to our <a href="terms.php">Terms</a> and <a href="privacy.php">Privacy Policy</a>
-                </p>
             </div>
         </div>
     </div>
@@ -171,6 +219,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p><a href="register.php">Register</a></p>
                     <p><a href="privacy.php">Privacy</a></p>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 East Africa Surveys | Your voice matters</p>
             </div>
         </div>
     </footer>
