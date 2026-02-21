@@ -1,3 +1,5 @@
+<?php
+
 // Add this temporary test function
 function testSimpleEmail($to) {
     $mail = new PHPMailer(true);
@@ -21,3 +23,4 @@ function testSimpleEmail($to) {
         return false;
     }
 }
+?>
