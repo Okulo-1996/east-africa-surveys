@@ -10,17 +10,14 @@ define('ADMIN_EMAIL', 'info.eastafricasurveys@gmail.com');
 define('SMTP_HOST', 'smtp.gmail.com');
 define('SMTP_PORT', 587);
 define('SMTP_USER', 'info.eastafricasurveys@gmail.com');
-define('SMTP_PASS', 'YOUR_APP_PASSWORD'); // You'll need to create an App Password in Gmail
+define('SMTP_PASS', 'YOUR_APP_PASSWORD'); // Your Gmail App Password
 define('SMTP_FROM', 'info.eastafricasurveys@gmail.com');
 define('SMTP_FROM_NAME', 'East Africa Surveys');
 
 // Security
-define('SALT', 'east-africa-2026-secure-salt'); // Change this to random string
+define('SALT', 'east-africa-2026-secure-salt');
 define('TOKEN_EXPIRY', 24); // Hours until verification token expires
 
-// Session configuration
-ini_set('session.cookie_httponly', 1);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.cookie_secure', 1);
-session_start();
+// DO NOT start sessions here! Sessions should be started in individual pages
+// Session configuration will be handled in each page that needs it
 ?>
