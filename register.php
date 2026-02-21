@@ -44,6 +44,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 INSERT INTO users (username, email, password_hash, country, age_range, gender, verification_token) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             ");
+
+// After successfully creating user in database
+if ($stmt->execute([...])) {
+    $user_id = $pdo->lastInsertId();
+    $verification_token = generateToken();
+    
+    // Save token to user record
+    $update = $pdo->prepare("UPDATE users SET verification_token = ? WHERE id = ?");
+    $update->execute([$verification_token, $user_id]);
+    
+    // Send verification email
+    $verify_link = SITE_URL . "/verify.php?token=" . $verification_token;
+    $email_subject = "Verify Your East Africa Surveys Account";
+    $email_message = "
+        <h2>Welcome to East Africa Surveys!</h2>
+        <p>Please click the link below to verify your email:</p>
+        <p><a href='$verify_link'>Verify My Account</a></p>
+        <p>Or copy this link: $verify_link</p>
+        <p>This link expires in 24 hours.</p>
+        <p>🇰🇪 Kenya | 🇺🇬 Uganda | 🇹🇿 Tanzania</p>
+    ";
+    
+    if (sendEmail($email, $email_subject, $email_message)) {
+        $success = "Registration successful! Check your email to verify your account.";
+    } else {
+        $success = "Registration successful! But verification email failed. Contact support.";
+    }
+}
             
             if ($stmt->execute([$username, $email, $password_hash, $country, $age_range, $gender, $verification_token])) {
                 // Send verification email
