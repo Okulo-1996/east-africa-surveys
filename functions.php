@@ -19,7 +19,7 @@ function sendEmail($to, $subject, $message) {
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'info.eastafricasurveys@gmail.com';
-        $mail->Password   = 'YOUR-16-CHAR-APP-PASSWORD'; // 🔴 CHANGE THIS!
+        $mail->Password   = 'srjb pbfo okti wkie'; // 🔴 CHANGE THIS!
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         
