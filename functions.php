@@ -1,4 +1,17 @@
 <?php
+// At the VERY TOP of functions.php
+require_once __DIR__ . '/PHPMailer/src/Exception.php';
+require_once __DIR__ . '/PHPMailer/src/PHPMailer.php';
+require_once __DIR__ . '/PHPMailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+function sendEmail($to, $subject, $message) {
+    $mail = new PHPMailer(true);
+    // ... rest of your code
+}
 // functions.php - Helper functions
 
 require_once 'db_connect.php';
