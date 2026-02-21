@@ -1,5 +1,7 @@
 <?php
-// At the VERY TOP of functions.php
+// functions.php - Helper functions for East Africa Surveys
+
+// PHPMailer includes
 require_once __DIR__ . '/PHPMailer/src/Exception.php';
 require_once __DIR__ . '/PHPMailer/src/PHPMailer.php';
 require_once __DIR__ . '/PHPMailer/src/SMTP.php';
@@ -8,18 +10,24 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
+// Generate random token
+function generateToken($length = 32) {
+    return bin2hex(random_bytes($length));
+}
+
+// Send email using Gmail SMTP
 function sendEmail($to, $subject, $message) {
     
     $mail = new PHPMailer(true);
     
     try {
-        // Server settings - Gmail SMTP
-        $mail->SMTPDebug = SMTP::DEBUG_OFF; // Set to 2 for debugging
+        // Server settings
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'info.eastafricasurveys@gmail.com';
-        $mail->Password   = 'srjb pbfo okti wkie'; // 🔴 CHANGE THIS!
+        $mail->Password   = 'YOUR-16-CHAR-APP-PASSWORD'; // CHANGE THIS!
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         
@@ -41,30 +49,6 @@ function sendEmail($to, $subject, $message) {
         error_log("PHPMailer Error: " . $mail->ErrorInfo);
         return false;
     }
-}
-
-// Don't forget your other functions (generateToken, etc.) below this line!
-
-    // ... rest of your code
-}
-// functions.php - Helper functions
-
-require_once 'db_connect.php';
-require_once 'config.php';
-
-// Generate random token
-function generateToken($length = 32) {
-    return bin2hex(random_bytes($length));
-}
-
-// Send email using Gmail SMTP
-function sendEmail($to, $subject, $message) {
-    $headers = "MIME-Version: 1.0" . "\r\n";
-    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= "From: " . SMTP_FROM_NAME . " <" . SMTP_FROM . ">" . "\r\n";
-    $headers .= "Reply-To: " . ADMIN_EMAIL . "\r\n";
-    
-    return mail($to, $subject, $message, $headers);
 }
 
 // Send verification email
