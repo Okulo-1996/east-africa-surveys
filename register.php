@@ -1,6 +1,4 @@
 <?php
-// Start session at the VERY TOP
-session_start();
 
 // Check if user is already logged in - redirect to dashboard
 if (isset($_SESSION['user_id'])) {
