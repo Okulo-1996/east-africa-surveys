@@ -8,10 +8,10 @@ require_once 'config.php';
 echo "<h1>🔍 Detailed Brevo Debug</h1>";
 
 // Show environment variable status
-$brevo_key = getenv('YOUR_BREVO_SMTP_KEY');
+$brevo_key = getenv('YOUR_BREVO_KEY');
 echo "<h3>Environment Variable:</h3>";
-echo "<p>YOUR_BREVO_SMTP_KEY exists: " . ($brevo_key ? '✅ YES' : '❌ NO') . "</p>";
-echo "<p>YOUR_BREVO_SMTP_KEY length: " . strlen($brevo_key) . " characters</p>";
+echo "<p>YOUR_BREVO_KEY exists: " . ($brevo_key ? '✅ YES' : '❌ NO') . "</p>";
+echo "<p>YOUR_BREVO_KEY length: " . strlen($brevo_key) . " characters</p>";
 echo "<p>First 10 chars: " . substr($brevo_key, 0, 10) . "...</p>";
 
 // Test function with detailed output
