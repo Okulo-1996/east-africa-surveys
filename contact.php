@@ -2,6 +2,7 @@
 // Check if user is logged in
 $logged_in = isset($_SESSION['user_id']);
 $username = $logged_in ? $_SESSION['username'] : '';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
