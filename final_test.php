@@ -32,7 +32,7 @@ echo "<!DOCTYPE html>
 echo "<h1>📧 Final Email Test</h1>";
 
 // Your test email - CHANGE THIS!
-$test_email = 'okuloisaac46@gmail.com@gmail.com'; // Put your email here
+$test_email = 'okuloisaac46@gmail.com'; // Put your email here
 
 echo "<div class='info'>";
 echo "<p><strong>Testing email to:</strong> $test_email</p>";
