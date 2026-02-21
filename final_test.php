@@ -36,7 +36,7 @@ $test_email = 'okuloisaac46@gmail.com'; // Put your email here
 
 echo "<div class='info'>";
 echo "<p><strong>Testing email to:</strong> $test_email</p>";
-echo "<p><strong>Using password:</strong> " . substr('srjb pbfo okti wkie', 0, 4) . "..." . substr('srjb pbfo okti wkie', -4) . "</p>";
+echo "<p><strong>Using password:</strong> " . substr('srjbpbfooktiwkie', 0, 4) . "..." . substr('srjbpbfooktiwkie', -4) . "</p>";
 echo "</div>";
 
 // Test function directly
@@ -55,7 +55,7 @@ function testEmailDirect($to) {
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'info.eastafricasurveys@gmail.com';
-        $mail->Password   = 'srjb pbfo okti wkie'; // Your App Password
+        $mail->Password   = 'srjbpbfooktiwkie'; // Your App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
         
