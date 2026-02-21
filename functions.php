@@ -9,7 +9,42 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 function sendEmail($to, $subject, $message) {
+    
     $mail = new PHPMailer(true);
+    
+    try {
+        // Server settings - Gmail SMTP
+        $mail->SMTPDebug = SMTP::DEBUG_OFF; // Set to 2 for debugging
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'info.eastafricasurveys@gmail.com';
+        $mail->Password   = 'YOUR-16-CHAR-APP-PASSWORD'; // 🔴 CHANGE THIS!
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+        
+        // Recipients
+        $mail->setFrom('info.eastafricasurveys@gmail.com', 'East Africa Surveys');
+        $mail->addAddress($to);
+        $mail->addReplyTo('info.eastafricasurveys@gmail.com', 'East Africa Surveys');
+        
+        // Content
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
+        $mail->Body    = $message;
+        $mail->AltBody = strip_tags(str_replace(['<br>', '<br/>', '</p>'], "\n", $message));
+        
+        $mail->send();
+        return true;
+        
+    } catch (Exception $e) {
+        error_log("PHPMailer Error: " . $mail->ErrorInfo);
+        return false;
+    }
+}
+
+// Don't forget your other functions (generateToken, etc.) below this line!
+
     // ... rest of your code
 }
 // functions.php - Helper functions
