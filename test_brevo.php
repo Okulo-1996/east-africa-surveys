@@ -7,8 +7,10 @@ require_once 'config.php';
 
 echo "<h1>🔍 Detailed Brevo Debug</h1>";
 
-// Show environment variable status
+// ✅ GET THE ENVIRONMENT VARIABLE FIRST
 $brevo_key = getenv('YOUR_BREVO_KEY');
+
+// Show environment variable status
 echo "<h3>Environment Variable:</h3>";
 echo "<p>YOUR_BREVO_KEY exists: " . ($brevo_key ? '✅ YES' : '❌ NO') . "</p>";
 echo "<p>YOUR_BREVO_KEY length: " . strlen($brevo_key) . " characters</p>";
@@ -16,6 +18,8 @@ echo "<p>First 10 chars: " . substr($brevo_key, 0, 10) . "...</p>";
 
 // Test function with detailed output
 function debugSendEmail($to, $subject, $message) {
+    global $brevo_key; // ✅ Use the global variable
+    
     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
     
     try {
@@ -32,7 +36,7 @@ function debugSendEmail($to, $subject, $message) {
         $mail->Host       = 'smtp-relay.brevo.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'a2ff87001@smtp-brevo.com';
-        $mail->Password   = $brevo_key;
+        $mail->Password   = $brevo_key; // ✅ Now using the correct variable
         $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 2525;
         
