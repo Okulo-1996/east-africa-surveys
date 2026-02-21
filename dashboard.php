@@ -1,15 +1,19 @@
 <?php
+session_start();
 require_once 'config.php';
 require_once 'db_connect.php';
 require_once 'functions.php';
 
-// Redirect if not logged in
-if (!isLoggedIn()) {
+// ✅ FIXED: Redirect to login if NOT logged in
+if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
 
+// Rest of your dashboard code...
 $user = getCurrentUser($pdo);
+// ... etc
+
 $vote_history = getUserVoteHistory($pdo, $user['id']);
 
 // Get user stats
@@ -213,3 +217,4 @@ $total_votes = $stmt->fetch()['total_votes'];
     </footer>
 </body>
 </html>
+?>
