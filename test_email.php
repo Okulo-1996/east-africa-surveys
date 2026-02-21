@@ -6,7 +6,7 @@ function testSimpleEmail($to) {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'info.eastafricasurveys@gmail.com';
-        $mail->Password = 'YOUR-APP-PASSWORD';
+        $mail->Password = 'srjb pbfo okti wkie';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         
