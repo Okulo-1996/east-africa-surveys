@@ -1,21 +1,25 @@
-/* ===== East Africa Surveys - Professional UI/UX ===== */
+/* ===== East Africa Surveys - Modern Clean UI ===== */
 :root {
-    /* Modern Color Palette */
-    --primary: #1a2e3f;        /* Deep navy - professional */
-    --secondary: #2d7a4b;       /* Forest green - East African landscape */
-    --accent: #e67e22;           /* Burnt orange - accent */
-    --light: #f8fafc;            /* Light background */
-    --dark: #1e293b;             /* Dark text */
-    --gray: #64748b;             /* Gray text */
-    --border: #e2e8f0;           /* Border color */
-    --white: #ffffff;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    /* Modern Color Palette - Inspired by Binunz */
+    --primary: #0B1120;        /* Deep navy background */
+    --secondary: #1E2C3A;       /* Card background */
+    --accent: #2563EB;          /* Bright blue accent */
+    --accent-hover: #1D4ED8;    /* Darker blue for hover */
+    --text-primary: #FFFFFF;    /* White text */
+    --text-secondary: #94A3B8;  /* Light gray text */
+    --border: #2D3A4A;          /* Subtle border */
+    --input-bg: #1E2C3A;        /* Input background */
+    --success: #10B981;         /* Green success */
+    --error: #EF4444;           /* Red error */
+    --warning: #F59E0B;         /* Orange warning */
     
     /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-heading: 'Poppins', var(--font-primary);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== Reset & Base ===== */
@@ -27,8 +31,8 @@
 
 body {
     font-family: var(--font-primary);
-    background: var(--light);
-    color: var(--dark);
+    background: var(--primary);
+    color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
@@ -36,41 +40,27 @@ body {
 }
 
 .container {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
     width: 100%;
 }
 
-/* ===== Professional Header ===== */
+/* ===== Modern Header ===== */
 header {
-    background: linear-gradient(135deg, var(--primary) 0%, #234567 100%);
-    color: var(--white);
-    padding: 60px 0 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-header::before {
-    content: "🇰🇪🇺🇬🇹🇿";
-    position: absolute;
-    right: 30px;
-    bottom: 20px;
-    font-size: 60px;
-    opacity: 0.1;
-    white-space: nowrap;
+    background: var(--primary);
+    padding: 40px 0 20px;
+    border-bottom: 1px solid var(--border);
 }
 
 .header-content {
-    position: relative;
-    z-index: 2;
+    text-align: center;
 }
 
 header h1 {
-    font-family: var(--font-heading);
-    font-size: 3.2em;
-    font-weight: 700;
-    margin-bottom: 15px;
+    font-size: 2.2em;
+    font-weight: 600;
+    margin-bottom: 8px;
     letter-spacing: -0.02em;
 }
 
@@ -79,57 +69,51 @@ header h1 span {
 }
 
 header p {
-    font-size: 1.2em;
-    opacity: 0.9;
-    max-width: 600px;
-    font-weight: 400;
+    color: var(--text-secondary);
+    font-size: 1em;
 }
 
-/* ===== Navigation ===== */
+/* ===== Clean Navigation ===== */
 nav {
-    background: var(--white);
-    padding: 12px 32px;
-    border-radius: 100px;
-    margin: -25px auto 40px;
-    max-width: 700px;
-    box-shadow: var(--shadow-md);
+    background: var(--secondary);
+    padding: 8px 16px;
+    border-radius: 12px;
+    margin: 20px 0 30px;
     display: flex;
     justify-content: center;
-    gap: 8px;
-    position: relative;
-    z-index: 10;
+    gap: 4px;
     border: 1px solid var(--border);
 }
 
 nav a {
-    color: var(--gray);
+    color: var(--text-secondary);
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 10px 16px;
     font-weight: 500;
     transition: all 0.2s;
-    border-radius: 40px;
+    border-radius: 8px;
     font-size: 0.95em;
 }
 
 nav a:hover {
-    color: var(--secondary);
-    background: #f1f5f9;
+    color: var(--text-primary);
+    background: rgba(37, 99, 235, 0.1);
 }
 
 nav a.active {
-    background: var(--secondary);
-    color: var(--white);
+    background: var(--accent);
+    color: white;
 }
 
-/* ===== Auth Container (Login/Register) ===== */
+/* ===== Auth Container (Login/Register) - MATCHES BINUNZ STYLE ===== */
 .auth-container {
-    max-width: 450px;
-    margin: 60px auto;
-    background: var(--white);
+    max-width: 480px;
+    margin: 40px auto;
+    background: var(--secondary);
     padding: 40px;
     border-radius: 24px;
-    box-shadow: var(--shadow-lg);
     border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
 }
 
 .auth-header {
@@ -138,28 +122,28 @@ nav a.active {
 }
 
 .auth-header h2 {
-    color: var(--primary);
-    font-size: 2em;
+    color: var(--text-primary);
+    font-size: 1.8em;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
 .auth-header p {
-    color: var(--gray);
+    color: var(--text-secondary);
     font-size: 0.95em;
 }
 
-/* ===== Form Elements ===== */
+/* ===== Form Elements - BINUNZ STYLE ===== */
 .form-group {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9em;
     font-weight: 500;
-    color: var(--dark);
-    font-size: 0.95em;
 }
 
 .form-group input,
@@ -167,24 +151,35 @@ nav a.active {
 .form-group textarea {
     width: 100%;
     padding: 14px 16px;
-    border: 2px solid var(--border);
+    background: var(--input-bg);
+    border: 1px solid var(--border);
     border-radius: 12px;
     font-size: 1em;
     transition: all 0.2s;
     font-family: var(--font-primary);
-    background: var(--white);
+    color: var(--text-primary);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--secondary);
-    box-shadow: 0 0 0 3px rgba(45, 122, 75, 0.1);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-.form-group input::placeholder {
-    color: #94a3b8;
+.form-group input::placeholder,
+.form-group select::placeholder,
+.form-group textarea::placeholder {
+    color: #4B5A6B;
+}
+
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--text-primary);
+    -webkit-box-shadow: 0 0 0px 1000px var(--input-bg) inset;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 /* ===== Form Row (2 columns) ===== */
@@ -197,19 +192,19 @@ nav a.active {
 /* ===== Password Hint ===== */
 .password-hint {
     font-size: 0.85em;
-    color: var(--gray);
+    color: var(--text-secondary);
     margin-top: 6px;
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-/* ===== Buttons ===== */
+/* ===== Buttons - BINUNZ STYLE ===== */
 .btn {
     display: inline-block;
-    padding: 14px 32px;
-    background: var(--secondary);
-    color: var(--white);
+    padding: 14px 24px;
+    background: var(--accent);
+    color: white;
     text-decoration: none;
     border-radius: 12px;
     border: none;
@@ -223,23 +218,28 @@ nav a.active {
 }
 
 .btn:hover {
-    background: #23623e;
+    background: var(--accent-hover);
     transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
 }
 
 .btn-outline {
     background: transparent;
-    border: 2px solid var(--secondary);
-    color: var(--secondary);
+    border: 1px solid var(--accent);
+    color: var(--accent);
 }
 
 .btn-outline:hover {
-    background: var(--secondary);
-    color: var(--white);
+    background: rgba(37, 99, 235, 0.1);
+    transform: translateY(-1px);
 }
 
-/* ===== Remember Me & Forgot Password ===== */
+.btn-small {
+    padding: 10px 20px;
+    font-size: 0.95em;
+    width: auto;
+}
+
+/* ===== Checkbox & Remember Me ===== */
 .remember-forgot {
     display: flex;
     justify-content: space-between;
@@ -251,7 +251,7 @@ nav a.active {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--gray);
+    color: var(--text-secondary);
     font-size: 0.95em;
     cursor: pointer;
 }
@@ -259,11 +259,12 @@ nav a.active {
 .remember-forgot input[type="checkbox"] {
     width: 18px;
     height: 18px;
-    accent-color: var(--secondary);
+    accent-color: var(--accent);
+    background: var(--input-bg);
 }
 
 .forgot-link {
-    color: var(--secondary);
+    color: var(--accent);
     text-decoration: none;
     font-size: 0.95em;
     font-weight: 500;
@@ -282,12 +283,13 @@ nav a.active {
 }
 
 .auth-footer p {
-    color: var(--gray);
+    color: var(--text-secondary);
     margin-bottom: 8px;
+    font-size: 0.95em;
 }
 
 .auth-footer a {
-    color: var(--secondary);
+    color: var(--accent);
     text-decoration: none;
     font-weight: 600;
 }
@@ -296,75 +298,61 @@ nav a.active {
     text-decoration: underline;
 }
 
-/* ===== Terms Checkbox ===== */
-.terms-checkbox {
-    display: flex;
+/* ===== Back Link ===== */
+.back-link {
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    margin: 24px 0;
-}
-
-.terms-checkbox input {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--secondary);
-}
-
-.terms-checkbox span {
-    color: var(--gray);
+    gap: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-top: 20px;
     font-size: 0.95em;
 }
 
-.terms-checkbox a {
-    color: var(--secondary);
-    text-decoration: none;
-    font-weight: 500;
+.back-link:hover {
+    color: var(--accent);
 }
 
-.terms-checkbox a:hover {
-    text-decoration: underline;
-}
-
-/* ===== Survey Cards ===== */
+/* ===== Survey Cards - Modern Design ===== */
 .survey-card {
-    background: var(--white);
+    background: var(--secondary);
     border-radius: 20px;
     padding: 30px;
-    margin-bottom: 24px;
-    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
     border: 1px solid var(--border);
     transition: all 0.2s;
 }
 
 .survey-card:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--secondary);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .question-number {
     display: inline-block;
-    background: var(--secondary);
-    color: var(--white);
-    padding: 6px 18px;
-    border-radius: 40px;
-    font-size: 0.9em;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--accent);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.85em;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     letter-spacing: 0.3px;
 }
 
 .question-text {
-    font-size: 1.3em;
-    font-weight: 600;
+    font-size: 1.2em;
+    font-weight: 500;
     margin-bottom: 24px;
-    color: var(--primary);
+    color: var(--text-primary);
     line-height: 1.5;
 }
 
-/* ===== Radio Options ===== */
+/* ===== Radio Options - Modern Style ===== */
 .option-group {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
@@ -374,61 +362,60 @@ nav a.active {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
-    padding: 14px 20px;
-    background: #f8fafc;
-    border: 2px solid var(--border);
+    padding: 14px 16px;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
     border-radius: 12px;
     transition: all 0.2s;
     font-weight: 500;
-    color: var(--dark);
+    color: var(--text-secondary);
 }
 
 .option-group label:hover {
-    background: #f1f5f9;
-    border-color: var(--secondary);
+    background: rgba(37, 99, 235, 0.1);
+    border-color: var(--accent);
+    color: var(--text-primary);
 }
 
 .option-group input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    accent-color: var(--secondary);
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
 }
 
 .option-group input[type="radio"]:checked + span {
-    color: var(--secondary);
-    font-weight: 600;
+    color: var(--text-primary);
 }
 
-/* ===== Stats Grid ===== */
+/* ===== Stats Cards ===== */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin: 50px 0;
+    gap: 20px;
+    margin: 40px 0;
 }
 
 .stat-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 30px 20px;
+    background: var(--secondary);
+    border-radius: 16px;
+    padding: 24px 20px;
     text-align: center;
-    box-shadow: var(--shadow-sm);
     border: 1px solid var(--border);
 }
 
 .stat-number {
-    font-size: 2.5em;
+    font-size: 2.2em;
     font-weight: 700;
-    color: var(--secondary);
-    margin-bottom: 8px;
+    color: var(--accent);
+    margin-bottom: 4px;
     line-height: 1;
 }
 
 .stat-label {
-    color: var(--gray);
-    font-size: 0.95em;
+    color: var(--text-secondary);
+    font-size: 0.9em;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -436,26 +423,25 @@ nav a.active {
 
 /* ===== Results Page ===== */
 .chart-container {
-    background: var(--white);
+    background: var(--secondary);
     border-radius: 20px;
     padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
     border: 1px solid var(--border);
 }
 
 .chart-title {
-    color: var(--primary);
-    font-size: 1.3em;
+    color: var(--text-primary);
+    font-size: 1.2em;
     font-weight: 600;
     margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--border);
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
 }
 
 /* Progress Bar */
 .progress-bar {
-    background: #f1f5f9;
+    background: var(--input-bg);
     height: 40px;
     border-radius: 10px;
     margin: 10px 0;
@@ -473,97 +459,30 @@ nav a.active {
     transition: width 0.3s;
 }
 
-.progress-yes { background: var(--secondary); }
-.progress-no { background: #dc2626; }
+.progress-yes { background: var(--success); }
+.progress-no { background: var(--error); }
 .progress-maybe { background: var(--accent); }
 
 /* ===== Dashboard ===== */
 .dashboard-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 30px;
+    gap: 24px;
     margin: 40px 0;
 }
 
 .profile-card {
-    background: var(--white);
+    background: var(--secondary);
     border-radius: 20px;
     padding: 30px;
-    box-shadow: var(--shadow-sm);
     border: 1px solid var(--border);
 }
 
 .profile-stats {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: var(--accent);
     color: white;
     border-radius: 20px;
     padding: 30px;
-}
-
-/* ===== Footer ===== */
-footer {
-    background: var(--primary);
-    color: var(--white);
-    padding: 60px 0 30px;
-    margin-top: 80px;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-    margin-bottom: 40px;
-}
-
-.footer-section h3 {
-    color: var(--white);
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    font-weight: 600;
-}
-
-.footer-section p {
-    margin-bottom: 10px;
-    opacity: 0.8;
-    line-height: 1.8;
-}
-
-.footer-section a {
-    color: var(--white);
-    text-decoration: none;
-    transition: opacity 0.2s;
-}
-
-.footer-section a:hover {
-    opacity: 1;
-    color: var(--accent);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    margin-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.9em;
-    opacity: 0.7;
-}
-
-/* ===== Email Badge ===== */
-.email-badge {
-    background: rgba(255,255,255,0.15);
-    padding: 12px 25px;
-    border-radius: 100px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    font-size: 0.95em;
-}
-
-.email-badge i {
-    color: var(--accent);
 }
 
 /* ===== Alert Messages ===== */
@@ -572,51 +491,119 @@ footer {
     border-radius: 12px;
     margin-bottom: 24px;
     font-size: 0.95em;
+    border-left: 4px solid transparent;
 }
 
 .alert-success {
-    background: #dff0d8;
-    color: #2d7a4b;
-    border: 1px solid #c3e6cb;
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+    border-left-color: var(--success);
 }
 
 .alert-error {
-    background: #f8d7da;
-    color: #dc2626;
-    border: 1px solid #f5c6cb;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    border-left-color: var(--error);
 }
 
 .alert-info {
-    background: #d1ecf1;
-    color: #0c5460;
-    border: 1px solid #bee5eb;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--accent);
+    border-left-color: var(--accent);
+}
+
+/* ===== Email Badge ===== */
+.email-badge {
+    background: var(--secondary);
+    padding: 12px 20px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    font-size: 0.95em;
+    color: var(--text-secondary);
+}
+
+.email-badge i {
+    color: var(--accent);
+}
+
+/* ===== Footer ===== */
+footer {
+    background: var(--secondary);
+    padding: 50px 0 30px;
+    margin-top: 60px;
+    border-top: 1px solid var(--border);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.footer-section a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-section a:hover {
+    color: var(--accent);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.9em;
 }
 
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2em;
+    .auth-container {
+        padding: 30px 20px;
+        margin: 20px auto;
     }
     
     nav {
         flex-wrap: wrap;
-        border-radius: 20px;
-        padding: 16px;
-        gap: 8px;
+        padding: 12px;
     }
     
     nav a {
         width: calc(50% - 4px);
         text-align: center;
+        padding: 8px 12px;
     }
     
     .form-row {
         grid-template-columns: 1fr;
+        gap: 0;
     }
     
     .stats-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 12px;
     }
     
     .footer-grid {
@@ -649,12 +636,8 @@ footer {
     }
 }
 
-.survey-card {
+.survey-card,
+.auth-container,
+.chart-container {
     animation: fadeIn 0.3s ease forwards;
 }
-
-.survey-card:nth-child(1) { animation-delay: 0.1s; }
-.survey-card:nth-child(2) { animation-delay: 0.2s; }
-.survey-card:nth-child(3) { animation-delay: 0.3s; }
-.survey-card:nth-child(4) { animation-delay: 0.4s; }
-.survey-card:nth-child(5) { animation-delay: 0.5s; }
